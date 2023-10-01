@@ -38,12 +38,12 @@ def load_model(args, sim_params, device, test=False):
         model = DVSPlaneNet(input_size=input_size, out_size=num_classes, \
             neuron_params1=sim_params['neuron_params1'], neuron_params2=sim_params['neuron_params2'], \
                 loss_params=sim_params['loss'], device=device, is_spike_train=test)
-    elif sim_params['dataset']['name'] in ['dvsgesture']:
+    elif sim_params['dataset']['name'] == 'dvsgesture':
         model = DVSGestureNet(input_size=input_size, out_size=num_classes, \
             neuron_params1=sim_params['neuron_params1'], neuron_params2=sim_params['neuron_params2'], \
                 loss_params=sim_params['loss'], device=device, is_spike_train=test
                 )
-    elif sim_params['dataset']['name'] in ['shd', 'ssc', 'ntidigits']:
+    elif sim_params['dataset']['name'] in ['shd', 'ntidigits']:
         model = FCNet(input_size=input_size, out_size=num_classes, hidden_size=sim_params['network']['hidden_size'], \
             neuron_params1=sim_params['neuron_params1'], neuron_params2=sim_params['neuron_params2'], loss_params=sim_params['loss'], device=device, \
                 is_spike_train=test)

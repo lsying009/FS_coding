@@ -47,13 +47,13 @@ class LossFn(nn.Module):
             loss_mode = self.loss_mode
         if isinstance(outputs, torch.Tensor):
             self.firing_rate = outputs
-        elif isinstance(outputs, list or tuple):
+        elif isinstance(outputs, (list, tuple)):
             if len(outputs) == 2:
                 self.output_times, self.firing_rate = outputs
             else:
                 assert len(outputs) == 2
         self.device = target.device
-   
+        
         if loss_mode in ['first_time']:
             if self.test:
                 regularisation = 0

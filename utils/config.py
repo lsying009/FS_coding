@@ -17,14 +17,16 @@ def create_save_name(sim_params, save_name=None, add_name=None):
         if sim_params['loss']['loss_mode'] == 'firing_rate':
             loss = 'fr{}'.format(sim_params['loss']['FR']['alpha'])
  
-        create_save_name = '{}_{}_tau{:.0f}'.format(
+        create_save_name = '{}_{}_tau{:.0f}_{}'.format(
                                    sim_params['dataset']['name'].casefold(),
                                    loss,
                                    sim_params['neuron_params2']['tau_m'],
+                                   sim_params['network']['neuron_type']
                                    )
         if add_name is not None:
             create_save_name = create_save_name + '_{}'.format(add_name)
         return create_save_name
+
 
 def load_sim_params(args, test=False):
     sim_params0 = parse_netparams(args.path_to_yaml)
@@ -55,12 +57,6 @@ def load_sim_params(args, test=False):
     if args.hidden_size:
         sim_params0['network']['hidden_size'] = args.hidden_size
 
-    # #####################
-    # # if args.is_recurrent:
-    # sim_params0['network']['recurrent'] = args.is_recurrent
-    # # if args.dropout:
-    # sim_params0['network']['dropout'] = args.dropout
-    
     if args.T:
         sim_params0['simulation']['T'] = args.T
     if args.dt:
@@ -96,8 +92,8 @@ def load_sim_params(args, test=False):
         checkpoint = torch.load(args.load_pt_file, map_location='cuda:0')
         if 'sim_params' in checkpoint.keys():
             sim_params = checkpoint['sim_params'].copy()
-            sim_params['simulation'] = sim_params0['simulation']
-            sim_params['learning'] = sim_params0['learning']
+            # sim_params['simulation'] = sim_params0['simulation']
+            # sim_params['learning'] = sim_params0['learning']
         if not test:
             sim_params['loss'] = sim_params0['loss'].copy()
     else:

@@ -90,13 +90,9 @@ def train(args, model, device, train_loader, optimizer, loss_fn, sim_params, epo
 
 def test(args, model, device, test_loader, sim_params, epoch, name, writer):
     # test always
-    loss_params = sim_params['loss'].copy()
-    
-    kwargs = {}
-    kwargs['dt'] = sim_params['simulation']['input_dt']
-    
+
     if hasattr(model, 'num_neurons'):
-        spike_count_time_bar = SpikeCountTimeBar(num_neurons=model.num_neurons, num_classes=sim_params['dataset']['num_classes'], T=sim_params['simulation']['input_T'], device=device, **kwargs)
+        spike_count_time_bar = SpikeCountTimeBar(num_neurons=model.num_neurons, num_classes=sim_params['dataset']['num_classes'], T=sim_params['simulation']['input_T'], device=device)
 
     loss_fn = LossFn(loss_params=sim_params['loss'], num_classes=sim_params['dataset']['num_classes'], step=sim_params['simulation']['input_T'], mode='test')
     model.eval()
@@ -132,7 +128,6 @@ def test(args, model, device, test_loader, sim_params, epoch, name, writer):
     if hasattr(model, 'num_neurons'):
         spike_count_time_bar.show_and_save()
         spk_cnt =  spike_count_time_bar.avg_spike_count
-        print('spike_counts:', spike_count_time_bar.avg_spike_count)
     else:
         spk_cnt = None
 
@@ -161,11 +156,11 @@ def train_main(args, kwargs):
     sim_params = load_sim_params(args)
     
     save_name = create_save_name(sim_params, args.save_name, args.add_name)
-    writer = SummaryWriter(os.path.join('./summary/',sim_params['dataset']['name'], '{}'.format(save_name)))
+    writer = SummaryWriter(os.path.join('../summary/',sim_params['dataset']['name'], '{}'.format(save_name)))
     
-    if not os.path.exists('./results/'):
-        os.makedirs('./results/')
-    path_to_save = os.path.join('./results/', sim_params['dataset']['name'], save_name)
+    if not os.path.exists('../results/'):
+        os.makedirs('../results/')
+    path_to_save = os.path.join('../results/', sim_params['dataset']['name'], save_name)
     if not os.path.exists(path_to_save):
         os.makedirs(path_to_save)
     output_txt_file = os.path.join(path_to_save, 'spk_cnt.csv')
@@ -176,7 +171,6 @@ def train_main(args, kwargs):
     
     
     model, load_epoch, load_acc = load_model(args, sim_params, device, test=False)
-    optimized_params = model.parameters()
    
     print(model)
     for name, param in model.named_parameters():
@@ -184,7 +178,7 @@ def train_main(args, kwargs):
 
 
     
-    optimizer = optim.Adam(params=optimized_params, lr=sim_params['learning']['lr'], amsgrad = True, weight_decay=sim_params['learning']['weight_decay'])
+    optimizer = optim.Adam(params=model.parameters(), lr=sim_params['learning']['lr'], amsgrad = True, weight_decay=sim_params['learning']['weight_decay'])
     if args.lr_decay:
         scheduler = optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=128, eta_min=0, last_epoch=-1)
     
@@ -211,7 +205,7 @@ def train_main(args, kwargs):
             print('lr: {}'.format(scheduler.get_last_lr()))
             
         # if (args.save_model):
-        path_to_model = './models/'
+        path_to_model = '../models/'
         if not os.path.exists(path_to_model):
             os.makedirs(path_to_model)
         

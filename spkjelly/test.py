@@ -186,21 +186,6 @@ def test_single_delay(args, model, device, test_loader, sim_params):
                 n += 1
             
  
-def test_main(args, kwargs):
-    
-    sim_params = load_sim_params(args, test=True)
-    test_loader = load_dataset(args, kwargs, sim_params, 'test')
-    
-    model, load_epoch, _ = load_model(args, sim_params, device, \
-        display=False if (args.test_single_delay) else True, test=True)
-
-        
-    if args.test_single_delay:
-        test_single_delay(args, model, device, test_loader, sim_params)
-    else:
-        print(model)
-        test(args, model, device, test_loader, 'test', sim_params, load_epoch)    
-
 
 if __name__ == '__main__':
     
@@ -218,13 +203,17 @@ if __name__ == '__main__':
     
     kwargs = {'num_workers': 0, 'pin_memory': True} if torch.cuda.is_available() else {}
     
-    args.save_name = args.load_pt_file.split('/')[-1].rsplit('.', 1)[0]
-   
-    dataset_name = args.load_pt_file.split('/')[-1].split('_')[1]
+    sim_params = load_sim_params(args, test=True)
+    test_loader = load_dataset(args, kwargs, sim_params, 'test')
+    
+    model, load_epoch, _ = load_model(args, sim_params, device, test=True)
 
-    if not os.path.exists('./results/'):
-        os.makedirs('./results/')
-    path_to_save = os.path.join('./results/', dataset_name, args.save_name)
+    args.save_name = args.load_pt_file.split('/')[-1].rsplit('.', 1)[0]
+    dataset_name = args.load_pt_file.split('/')[-1].split('_')[0]
+
+    if not os.path.exists('../results/'):
+        os.makedirs('../results/')
+    path_to_save = os.path.join('../results/', dataset_name, args.save_name)
     # print(path_to_save, not os.path.exists(path_to_save))
     if not os.path.exists(path_to_save):
         os.makedirs(path_to_save)
@@ -234,7 +223,13 @@ if __name__ == '__main__':
     
     print('batch_size', args.test_batch_size)
     print('best_model', args.best_model)
-    test_main(args, kwargs)
+    
+    if args.test_single_delay:
+        test_single_delay(args, model, device, test_loader, sim_params)
+    else:
+        print(model)
+        test(args, model, device, test_loader, 'test', sim_params, load_epoch)    
 
-        
+
+    
         

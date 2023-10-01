@@ -2,37 +2,55 @@
 
 This repository is the official PyTorch implementation of the paper [First-spike coding promotes accurate and efficient spiking neural networks for discrete events with rich temporal structures](https://www.frontiersin.org/articles/10.3389/fnins.2023.1266003/abstract).
 
+
+## Implementation
+There are two implementation versions of SNNs, based on [SuperSpike](https://arxiv.org/abs/1705.11146) and [SpikingJelly](https://github.com/fangwei123456/spikingjelly) under folders named ```superspike``` and ```spkjelly```, respectively. Please install ```spikingjelly==0.0.0.0.14``` before use.
+
+In ```superspike```, the backpropagation of neurons is implemented by PyTorch Autograd, training speed is relatively slow. Only Current-based LIF (CuLIF) neuron with or without trainable time constants are implemented.
+
+In ```spkjelly```, the FP and BP of neurons are accelerated when using ```backend='cupy'``` under ```step_mode='m'```.   We implemented the cupy backend for three types of spiking neurons, including CuLIF, Parametric CuLIF (PCuLIF) and [Adaptive LIF (AdLIF)](https://www.frontiersin.org/articles/10.3389/fnins.2022.865897/full) neurons. We recommend using this implementation, since the training is much faster and models with AdLIF for SHD and NTIDIGITS achieve the best performance.
+
+
 ## Dataset
+Four datasets are trained and tested, including audio datasets [SHD](https://zenkelab.org/resources/spiking-heidelberg-datasets-shd/), [N-TIDIGITIS](https://docs.google.com/document/d/1Uxe7GsKKXcy6SlDUX4hoJVAC0-UkH-8kr5UXp0Ndi1M/edit#heading=h.sbnu5gtazqjq) and visual datasets [DVSGesture](https://research.ibm.com/interactive/dvsgesture/), [DVSPlane](http://greg-cohen.com/datasets/dvs-planes/). These data are transformed into ```.hdf5``` format, which can be downloaded [here](https://drive.google.com/drive/folders/10-9ezGNdfZJKFKDDYQge_vPzBZIOSm54?usp=sharing). Put them in the ```datasets``` folder.
 
 
+## Training
+Run ```bash run.sh``` to train. Parameter settings can be found in ```.yaml``` under ```configs```. Parameters can also be specified by args. Please ```cd superspike``` or ```cd spkjelly``` before run ```bash run.sh```.
 
-
-### Training
-```cd superspike```
-```cd spikingjelly```
-An example of training E2V model.
+An example of training.
     
-    python train_e2v.py \
-    --path_to_train_data $path_to_train_data \
-    --model_name "RecNet" \
-    --model_mode "cista-lstc" \
-    --batch_size 1 --epochs 60 --lr 1e-4 \
-    --len_sequence 15 \
-    --num_bins 5 \
-    --depth 5 --base_channels 64 \
-    --num_events 15000 \
+    cd spikingjelly
+    path_to_yaml='../configs/adlif_shd.yaml'
+    python train.py \
+    --path_to_yaml $path_to_yaml \
+    --log-interval 5 \
+    --lr 1e-3 \
+    --batch-size 128 \
+    --test-batch-size 256 \
+    --epochs 80 \
+    --loss_mode 'first_time' \
+    --T 100 \
+    --T_empty 0 \
+    --dt 10 \
+    --hidden_size 256 256 \
+    --FS 0.2 16 200 \
+    --neuron1 5. 5. 0.5 \
+    --neuron2 60. 60. 10 \
+    --treg 0.01 0.02 \
 
-### Testing
-```test_data_mode='real'``` for [HQF](https://timostoff.github.io/20ecnn) and [ECD](https://rpg.ifi.uzh.ch/davis_data.html) data sequences, and ```test_data_mode='upsampled'``` for simulated data sequences.
-    
-    python test_e2v.py \
-    --path_to_test_model pretrained/RecNet_cista-lstc.pth.tar \
-    --path_to_test_data data_examples/ECD \
-    --reader_type 'image_reader' \
-    --model_mode "cista-lstc" \
-    --test_data_mode 'real' \
-    --num_events 15000 \
-    --test_data_name slider_depth \
+## Testing
+Each model can be evaluated with FS/FR coding. Run ```bash run_test.sh```, check the FR/FS accuracy, spike count, time delay, spike pattern, etc.
+
+An example of testing.
+
+    python test.py \
+    --path_to_yaml $path_to_yaml \
+    --test-batch-size $test_batch_size \
+    --T $chunck_size \
+    --T_empty 0 \
+    --load_pt_file $load_pt_file \
+    --best_model \
 
 
 ## Citation

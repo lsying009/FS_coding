@@ -173,7 +173,7 @@ class SpikeFCNet(nn.Module):
         self.hidden_size = hidden_size
         self.input_size = input_size if isinstance(input_size, int) else input_size[0]*input_size[1]*input_size[2]
         
-        self.fc_layers = []
+        self.fc_layers = nn.ModuleList([])
         self.num_neurons = []
         input_size = self.input_size
         for h_size in self.hidden_size:

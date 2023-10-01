@@ -30,9 +30,6 @@ def plot_event_tensor_2d(times, units, save_name, class_id):
   
 
 
-def props(cls):   
-  return [i for i in cls.__dir__.keys() if i[:1] == 'spk_rec']
-
 
 class Statistics:
     def __init__(self, display=False, path_to_save=None, save_name=None, num_neurons=None):
@@ -172,7 +169,7 @@ class SpikeCountTimeBar(Statistics):
     ''' show and save the average number of spikes for each class before decision
     / average time to make correct decisions
     '''
-    def __init__(self, num_neurons, num_classes, T, dt, device, display=False,
+    def __init__(self, num_neurons, num_classes, T, device, display=False,
                 path_to_save=None, save_name=None):
         super().__init__(display, path_to_save, save_name, num_neurons)
         self.num_classes = num_classes

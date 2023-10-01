@@ -14,6 +14,8 @@ simulation:
     dt: 10      #dt, Ts, sampling time in ms
     T:   120     #nSample, chunk_size, num of bins
     T_empty: 40    # add empty sequence
+network:
+    neuron_type: 'culif'
 neuron_params1:
     tau_m:    5
     tau_s:    5

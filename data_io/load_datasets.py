@@ -26,7 +26,6 @@ def load_dataset(args, kwargs, sim_params, mode='test'):
                                 empty_size=sim_params['simulation']['T_empty'],
                                 num_classes=num_classes,
                                 target_transform = 'onehot',
-                                add_noise=False,
                                 )
         
     if dataset_type in ['shd']:

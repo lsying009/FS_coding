@@ -4,7 +4,7 @@ import numpy as np
 
 
 from spikingjelly.activation_based import layer
-from .neuron_ex import CuLIFNode, ParametricCuLIFNode, CuAdLIFNode, AdLIFNode
+from .neuron_ex import CuLIFNode, ParametricCuLIFNode, AdLIFNode
 from .surrogate_ex import MySoftSign
 from .container_ex import AddLinearRecurrentContainer
 from .time_encoding import Spike2Time
@@ -75,11 +75,6 @@ def SpikeFC(neuron_params, neuron_type, input_size, out_size, bias=False,
                     surrogate_function=MySoftSign(), \
                     output_size=out_size, detach_reset=True, backend=backend, step_mode=neuron_step_mode, decay_mode=decay_mode, 
                     store_v_seq = store_v_seq)
-    elif neuron_type == 'cuadlif':
-        neuron = CuAdLIFNode(tau_mem= neuron_params['tau_m'], tau_syn = neuron_params['tau_s'], tau_osc = 100.0, v_threshold=neuron_params['theta'],  \
-                    surrogate_function=MySoftSign(), \
-                    output_size=out_size, detach_reset=True, backend=backend, step_mode=neuron_step_mode, decay_mode=decay_mode, 
-                    store_v_seq = store_v_seq, store_I_seq = store_I_seq) 
     elif neuron_type == 'pculif':
         neuron = ParametricCuLIFNode(tau_mem= neuron_params['tau_m'], tau_syn = neuron_params['tau_s'], v_threshold=neuron_params['theta'],  \
                     surrogate_function=MySoftSign(), \

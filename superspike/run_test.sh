@@ -1,13 +1,21 @@
+#!\bin\bash
 
+dataset_name='shd'
+neuron_type='culif'
+load_pt_file=../models/shd_fs0.2_tau60_culif.pt
 
 dataset_name='dvsgesture'
 neuron_type='culif'
-load_pt_file=models/dvsgesture_ttfs0.1_tau60.pt
+load_pt_file=../models/dvsgesture_fs0.1_tau60_culif.pt
+
+dataset_name='dvsplane'
+neuron_type='culif'
+load_pt_file=../models/dvsplane_fs0.1_tau40_culif.pt
 
 
 dataset_name='ntidigits'
 neuron_type='culif'
-load_pt_file=models/ntidigits_fr20.0_tau40.pt
+load_pt_file=../models/ntidigits_fs0.1_tau40_culif.pt
 
 
 if [ $dataset_name == 'dvsgesture' ]
@@ -17,7 +25,7 @@ then
     test_batch_size=4
 elif [ $dataset_name == 'shd' ]
 then
-    path_to_yaml='../configs/culif_network_shd.yaml'
+    path_to_yaml='../configs/culif_shd.yaml'
     chunck_size=100
     test_batch_size=256
 elif [ $dataset_name == 'dvsplane' ]
@@ -47,7 +55,7 @@ python test.py \
 --path_to_yaml $path_to_yaml \
 --T $chunck_size \
 --T_empty 0 \
---test-batch-size $test_continuous_batch_size \
+--test-batch-size 20 \
 --load_pt_file $load_pt_file \
 --test_single_delay \
 --best_model \

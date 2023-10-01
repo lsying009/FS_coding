@@ -184,7 +184,6 @@ def create_datasets(filename,
                     num_classes=10,
                     transform=None,
                     target_transform=None,
-                    add_noise=False,
                     ):
 
     if isinstance(ds, int):
@@ -219,7 +218,7 @@ def create_datasets(filename,
                                 dt=dt,
                                 size=size,
                                 ds=ds,
-                                add_noise=add_noise)
+                                )
     return dataset
 
 

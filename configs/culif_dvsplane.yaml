@@ -12,7 +12,6 @@ learning:
     clip_norm: 10
 network:
     neuron_type: 'culif'
-    hidden_size: 128
 simulation:
     dt: 2      #dt, Ts, sampling time in ms
     T:   135     #nSample, chunk_size, num of bins

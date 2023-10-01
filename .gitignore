@@ -1,0 +1,4 @@
+models/
+results/
+summary/
+**/__pycache__/

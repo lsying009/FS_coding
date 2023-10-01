@@ -1,7 +1,7 @@
 #!\bin\bash
 path_to_yaml='../configs/adlif_shd.yaml'
 
-python train.py \
+# python train.py \
 --path_to_yaml $path_to_yaml \
 --log-interval 5 \
 --lr 1e-3 \
@@ -17,8 +17,7 @@ python train.py \
 --neuron1 5. 5. 0.5 \
 --neuron2 60. 60. 10 \
 --treg 0.01 0.02 \
---seed 2 \
---add_name 'adlif' \
+# --seed 2 \
 
 
 path_to_yaml='../configs/adlif_ntidigits.yaml'
@@ -39,12 +38,11 @@ python train.py \
 --neuron1 5. 5. 0.5 \
 --neuron2 40. 40. 10 \
 --treg 0.01 0.02 \
---add_name 'adlif' \
 
 
 path_to_yaml='../configs/culif_dvsgesture.yaml'
 
-python train.py \
+# python train.py \
 --path_to_yaml $path_to_yaml \
 --log-interval 5 \
 --lr 1e-4 \
@@ -64,7 +62,7 @@ python train.py \
 
 path_to_yaml='../configs/culif_dvsplane.yaml'
 
-python train.py \
+# python train.py \
 --path_to_yaml $path_to_yaml \
 --log-interval 5 \
 --lr 3e-4 \
