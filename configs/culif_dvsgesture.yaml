@@ -1,0 +1,36 @@
+dataset:
+    name:   'dvsgesture'
+    path_to_dataset:    '/home/sl220/Documents/data/DVSGesture/'
+    num_classes:    10
+    input_size: [2,32,32]
+learning:
+    batch_size:     16
+    lr:   1e-4
+    lr_decay:   False
+    weight_decay:   0.0001
+    epochs:  40
+    clip_norm: 10
+simulation:
+    dt: 10      #dt, Ts, sampling time in ms
+    T:   120     #nSample, chunk_size, num of bins
+    T_empty: 40    # add empty sequence
+neuron_params1:
+    tau_m:    5
+    tau_s:    5
+    theta:    0.5
+neuron_params2:
+    tau_m:    60
+    tau_s:    60
+    theta:    1.0
+loss:
+    loss_mode:   'first_time' #'first_time' ' #'firing_rate'
+    FS:
+        alpha: 0.1
+        D: 4 # sigma=T/D, determine the window size
+        A: 300 # Amplitude of Gaussian kernel
+    FR:
+        alpha: 10
+    # Constraints for dead neurons (large FS timing)
+    treg:
+        lambda: 0.01
+        beta: 0.02

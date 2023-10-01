@@ -1,0 +1,39 @@
+dataset:
+    name:   'ntidigits'
+    path_to_dataset:   '/home/sl220/Documents/data/N-TIDIGITS/'
+    num_classes:    11
+    input_size: 64
+learning:
+    batch_size:     128
+    lr:   1e-3
+    lr_decay:   False
+    weight_decay:   0.0001
+    epochs:  200
+    clip_norm: 10
+network:
+    neuron_type: 'adlif'
+    hidden_size: [256 256]
+simulation:
+    dt: 5      #dt, Ts, sampling time in ms
+    T:   250     #nSample, chunk_size, num of bins
+    T_empty: 0    # add empty sequence
+neuron_params1:
+    tau_m:    5
+    tau_s:    5
+    theta:    0.5
+neuron_params2:
+    tau_m:    40
+    tau_s:    40
+    theta:    10.0
+loss:
+    loss_mode:   'first_time' #'first_time' ' #'firing_rate'
+    FS:
+        alpha: 0.1
+        D: 16 # sigma=T/D, determine the window size
+        A: 500 # Amplitude of Gaussian kernel
+    FR:
+        alpha: 20
+    # Constraints for dead neurons (large FS timing)
+    treg:
+        lambda: 0.01
+        beta: 0.02

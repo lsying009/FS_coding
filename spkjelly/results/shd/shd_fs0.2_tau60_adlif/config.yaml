@@ -1,0 +1,41 @@
+dataset:
+  input_size: 700
+  name: shd
+  num_classes: 20
+  path_to_dataset: /home/sl220/Documents/data/SHD-SSC/SHD/
+learning:
+  batch_size: 128
+  clip_norm: 10
+  epochs: 80
+  lr: 0.001
+  lr_decay: false
+  weight_decay: 0.0001
+loss:
+  FR:
+    alpha: 20
+  FS:
+    A: 200.0
+    D: 16.0
+    alpha: 0.2
+  loss_mode: first_time
+  treg:
+    beta: 0.02
+    lambda: 0.01
+network:
+  hidden_size:
+  - 256
+  - 256
+  neuron_type: adlif
+neuron_params1:
+  tau_m: 5.0
+  tau_s: 5.0
+  theta: 0.5
+neuron_params2:
+  tau_m: 60.0
+  tau_s: 60.0
+  theta: 10.0
+simulation:
+  T: 100
+  T_empty: 0
+  dt: 10.0
+  input_T: 100
