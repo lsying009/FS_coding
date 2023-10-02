@@ -9,12 +9,12 @@ This repository is the official PyTorch implementation of the paper [First-spike
 ## Implementation
 There are two implementation versions of SNNs, based on [SuperSpike](https://arxiv.org/abs/1705.11146) and [SpikingJelly](https://github.com/fangwei123456/spikingjelly) under folders named ```superspike``` and ```spkjelly```, respectively. Please install ```spikingjelly==0.0.0.0.14``` before use.
 
-In ```superspike```, the backpropagation of neurons is implemented by PyTorch Autograd, training speed is relatively slow. Only Current-based LIF (CuLIF) neuron with or without trainable time constants are implemented.
+In ```superspike```, the backpropagation of neurons is implemented by PyTorch Autograd, training speed is relatively slow. Only Current-based LIF (CuLIF) neuron with fixed or trainable time constants are implemented.
 
 In ```spkjelly```, the FP and BP of neurons are accelerated when using ```backend='cupy'``` under ```step_mode='m'```.   We implemented the cupy backend for three types of spiking neurons, including CuLIF, Parametric CuLIF (PCuLIF) and [Adaptive LIF (AdLIF)](https://www.frontiersin.org/articles/10.3389/fnins.2022.865897/full) neurons. We recommend using this implementation, since the training is much faster and models with AdLIF for SHD and NTIDIGITS achieve the best performance.
 
 
-## Dataset
+## Datasets
 Four datasets are trained and tested, including audio datasets [SHD](https://zenkelab.org/resources/spiking-heidelberg-datasets-shd/), [N-TIDIGITIS](https://docs.google.com/document/d/1Uxe7GsKKXcy6SlDUX4hoJVAC0-UkH-8kr5UXp0Ndi1M/edit#heading=h.sbnu5gtazqjq) and visual datasets [DVSGesture](https://research.ibm.com/interactive/dvsgesture/), [DVSPlane](http://greg-cohen.com/datasets/dvs-planes/). These data are transformed into ```.hdf5``` format, which can be downloaded [here](https://drive.google.com/drive/folders/10-9ezGNdfZJKFKDDYQge_vPzBZIOSm54?usp=sharing). Put them in the ```datasets``` folder.
 
 
