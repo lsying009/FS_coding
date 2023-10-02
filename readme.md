@@ -15,7 +15,7 @@ In ```spkjelly```, the FP and BP of neurons are accelerated when using ```backen
 
 
 ## Datasets
-Four datasets are trained and tested, including audio datasets [SHD](https://zenkelab.org/resources/spiking-heidelberg-datasets-shd/), [N-TIDIGITIS](https://docs.google.com/document/d/1Uxe7GsKKXcy6SlDUX4hoJVAC0-UkH-8kr5UXp0Ndi1M/edit#heading=h.sbnu5gtazqjq) and visual datasets [DVSGesture](https://research.ibm.com/interactive/dvsgesture/), [DVSPlane](http://greg-cohen.com/datasets/dvs-planes/). These data are transformed into ```.hdf5``` format, which can be downloaded [here](https://drive.google.com/drive/folders/10-9ezGNdfZJKFKDDYQge_vPzBZIOSm54?usp=sharing). Put them in the ```datasets``` folder.
+Four datasets are trained and tested, including audio datasets [SHD](https://zenkelab.org/resources/spiking-heidelberg-datasets-shd/), [N-TIDIGITIS](https://docs.google.com/document/d/1Uxe7GsKKXcy6SlDUX4hoJVAC0-UkH-8kr5UXp0Ndi1M/edit#heading=h.sbnu5gtazqjq) and visual datasets [DVSGesture](https://research.ibm.com/interactive/dvsgesture/), [DVSPlane](http://greg-cohen.com/datasets/dvs-planes/). These data are transformed into ```.hdf5``` format, which can be downloaded from [here](https://drive.google.com/drive/folders/10-9ezGNdfZJKFKDDYQge_vPzBZIOSm54?usp=sharing). Put them in the ```datasets``` folder.
 
 
 ## Training
