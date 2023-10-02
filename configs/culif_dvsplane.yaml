@@ -1,6 +1,6 @@
 dataset:
     name:   'dvsplane'
-    path_to_dataset:    '/home/sl220/Documents/data/DVSPlane/'
+    path_to_dataset:    '../datasets/DVSPlane/'
     num_classes:    4
     input_size: [2,60,76]
 learning:

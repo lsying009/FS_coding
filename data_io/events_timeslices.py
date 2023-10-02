@@ -1,6 +1,6 @@
-"""DAVIS346 test example.
-Author: Yuhuang Hu
-Email : duguyue100@gmail.com
+"""
+Codes are modified from
+https://github.com/Barchid/SNN-PyTorch/blob/18caf3f5e4061bbfac6f7e7740198e86570d43cc/torchneuromorphic/events_timeslices.py
 """
 from __future__ import print_function
 

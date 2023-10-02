@@ -1,6 +1,6 @@
 dataset:
     name:   'ntidigits'
-    path_to_dataset:   '/home/sl220/Documents/data/N-TIDIGITS/'
+    path_to_dataset:   '../datasets/N-TIDIGITS/'
     num_classes:    11
     input_size: 64
 learning:

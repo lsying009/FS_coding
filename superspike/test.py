@@ -24,7 +24,7 @@ from load_models import load_model
 import sys
 sys.path.append('..')
 from utils.config import config_test, load_sim_params
-from utils.display import * #SpikeHistogram, SpikeCountTimeBar, AccuracywithTime, raster_plot, raster_plot_change
+from utils.display import * 
 from utils.loss import LossFn
 from data_io.load_datasets import load_dataset
 

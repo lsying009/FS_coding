@@ -1,13 +1,5 @@
-#!/usr/bin/env python
-#-----------------------------------------------------------------------------
-# Author: Emre Neftci
-#
-# Creation Date : Fri 01 Dec 2017 10:05:17 PM PST
-# Last Modified : Sun 29 Jul 2018 01:39:06 PM PDT
-#
-# Copyright : (c)
-# Licence : Apache License, Version 2.0
-#-----------------------------------------------------------------------------
+# Codes are modified from
+# https://github.com/Barchid/SNN-PyTorch/blob/18caf3f5e4061bbfac6f7e7740198e86570d43cc/torchneuromorphic/dvs_gestures/dvsgestures_dataloaders.py
 
 import numpy as np
 import torch
@@ -15,9 +7,7 @@ from torch.utils.data import Dataset
 from .transforms import *
 import h5py
 from .events_timeslices import *
-import os
 import time
-import matplotlib.pyplot as plt
 
 # dcll_folder = os.path.dirname(__file__)
 data_folder = '/home/sl220/Documents/data/DVSGesture/'

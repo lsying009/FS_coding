@@ -1,6 +1,6 @@
 dataset:
     name:   'shd'
-    path_to_dataset:    '/home/sl220/Documents/data/SHD-SSC/SHD/'
+    path_to_dataset:    '../datasets/SHD-SSC/SHD/'
     num_classes:    20
     input_size: 700
 learning:

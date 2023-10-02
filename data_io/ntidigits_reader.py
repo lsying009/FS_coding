@@ -1,13 +1,10 @@
 ## codes are modified from https://github.com/Barchid/SNN-PyTorch/blob/18caf3f5e4061bbfac6f7e7740198e86570d43cc/torchneuromorphic/ntidigits/ntidigits_dataloaders.py
 import numpy as np
-import torch
 from torch.utils.data import Dataset
 from .transforms import *
 import h5py
 from .events_timeslices import *
 import os
-import time
-import matplotlib.pyplot as plt
 
 
 mapping = { 0 :'0',

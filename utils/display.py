@@ -52,7 +52,7 @@ class Statistics:
                 
 
 class SpikeHistogram(Statistics):
-    def __init__(self, bins, dt, display=False,
+    def __init__(self, bins, display=False,
                 path_to_save=None, save_name=None):
         super().__init__(display, path_to_save, save_name)
         self.fr_array = []
@@ -551,11 +551,7 @@ def raster_plot_single(spike_train, target_label, loss_mode):
   
   plt.xlim([time_sequence[0], time_sequence[-1]])
   plt.ylim([-0.5, N-0.5])
-  
-#   plt.title('Ground truth: {:d}'.format(target_label))
-  
-#   plt.title('Ground truth: ' + str(target_label))
-  
+
 
 
 

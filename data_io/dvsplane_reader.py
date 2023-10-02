@@ -1,14 +1,8 @@
-#### dataset from https://github.com/PIX2NVS/NVS2Graph/blob/master/code/inputsdata.py
 import numpy as np
-import torch
 from torch.utils.data import Dataset
 from .transforms import *
 import h5py
 from .events_timeslices import *
-import os
-import time
-import matplotlib.pyplot as plt
-
 
 
 class DVSPlaneDataset(Dataset):

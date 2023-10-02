@@ -1,6 +1,6 @@
 dataset:
     name:   'dvsgesture'
-    path_to_dataset:    '/home/sl220/Documents/data/DVSGesture/'
+    path_to_dataset:    '../datasets/DVSGesture/'
     num_classes:    10
     input_size: [2,32,32]
 learning:

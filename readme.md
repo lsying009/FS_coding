@@ -1,7 +1,10 @@
-# First-Spike Coding
+# First-Spike Coding of SNNs
 
-This repository is the official PyTorch implementation of the paper [First-spike coding promotes accurate and efficient spiking neural networks for discrete events with rich temporal structures](https://www.frontiersin.org/articles/10.3389/fnins.2023.1266003/abstract).
+[Siying Liu (siying.liu20@imperial.ac.uk)](https://www.imperial.ac.uk/people/siying.liu20), [Vincent C. H. Leung](https://scholar.google.com/citations?user=UUlylYYAAAAJ&hl=en&oi=sra), and [Pier Luigi Dragotti](https://www.commsp.ee.ic.ac.uk/~pld/).
 
+This repository is the official PyTorch implementation of the paper [First-spike coding promotes accurate and efficient spiking neural networks for discrete events with rich temporal structures](https://www.frontiersin.org/articles/10.3389/fnins.2023.1266003/full).
+
+![FS arch](https://www.frontiersin.org/files/Articles/1266003/fnins-17-1266003-HTML/image_m/fnins-17-1266003-g002.jpg)
 
 ## Implementation
 There are two implementation versions of SNNs, based on [SuperSpike](https://arxiv.org/abs/1705.11146) and [SpikingJelly](https://github.com/fangwei123456/spikingjelly) under folders named ```superspike``` and ```spkjelly```, respectively. Please install ```spikingjelly==0.0.0.0.14``` before use.
@@ -56,12 +59,14 @@ An example of testing.
 ## Citation
 If you use any of this code, please cite the publications as follows:
 ```bibtex
-@article{liu17first,
-  title={First-spike coding promotes accurate and efficient spiking neural networks for discrete events with rich temporal structures},
-  author={Liu, Siying and Leung, Vincent CH and Dragotti, Pier Luigi},
-  journal={Frontiers in Neuroscience},
-  volume={17},
-  pages={1266003},
-  publisher={Frontiers}
+@ARTICLE{10.3389/fnins.2023.1266003,
+  AUTHOR={Liu, Siying and Leung, Vincent C. H. and Dragotti, Pier Luigi},   
+  TITLE={First-spike coding promotes accurate and efficient spiking neural networks for discrete events with rich temporal structures},      
+  JOURNAL={Frontiers in Neuroscience},      
+  VOLUME={17},           
+  YEAR={2023},      
+  URL={https://www.frontiersin.org/articles/10.3389/fnins.2023.1266003},       
+  DOI={10.3389/fnins.2023.1266003},      
+  ISSN={1662-453X},   
 }
 ```

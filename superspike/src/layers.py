@@ -1,10 +1,12 @@
+# Some of codes are from 
+# https://github.com/npvoid/neural_heterogeneity/blob/main/SuGD_code/layers.py
+
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 
 
-# https://github.com/npvoid/neural_heterogeneity/blob/main/SuGD_code/layers.py
 
 
 class SuSpike(torch.autograd.Function):

@@ -1,5 +1,3 @@
-## codes come from https://github.com/Gausx/DVS_Gestures.git
-# from binascii import a2b_base64
 import torch
 import torch.nn as nn
 import numpy as np
